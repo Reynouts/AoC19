@@ -7,7 +7,6 @@ def tests():
     for case in testcases:
         assert solve(case[0]) == case[1], "Expected {}, but got {}".format(case[1],solve(case[0]))
 
-
 def solve():
     return 0
 
