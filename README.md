@@ -1,12 +1,12 @@
 # Advent of Code 2019
 Solving puzzles of AoC19, probably all with Python.
-In this readme, just some notes.
+In this readme, just some notes. 
 
 ## Day 1
 Easy puzzle today, took a couple of minutes to make it work
 with a generator in a list comprehension. More straight-forward
 solution would be a while loop and extra checks. Tried to make
-it "pythonic". 
+it "pythonic" and short.
 
 Notable part for this puzzle (is all the code for solving):
 ``` python
