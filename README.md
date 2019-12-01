@@ -20,6 +20,6 @@ while len(data) > 0:
 Started with using a module to get my puzzle input automatically
 without copy and pasting (just for fun, because I'm not waking 
 up early enough for a leaderboard *attempt*). The module is 
-called _advent-of-code-data_ (aocd). You can even make automatic
-submissions, but I'm not touching that yet.
+called [advent-of-code-data (aocd)](https://github.com/wimglenn/advent-of-code-data). 
+You can even make automatic submissions, but I'm not touching that yet.
 
