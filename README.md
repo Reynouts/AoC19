@@ -9,12 +9,12 @@ solution would be a while loop and extra checks. Tried to make
 it "pythonic". 
 
 Notable part for this puzzle (is all the code for solving):
-'''python
+``` python
 total = 0
 while len(data) > 0:
    data = [i for i in (x // 3 - 2 for x in data) if i > 0]
    total += sum(data)
-'''
+```
 
 ## Day 2
 Started with using a module to get my puzzle input automatically
