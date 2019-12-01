@@ -24,7 +24,8 @@ def solve(data):
 def main():
     # Get data from day1, after running the testcases
     tests()
-    data = [int(x) for x in util.get_input(1)]
+    data = util.get_input(1)
+    data = [int(x) for x in data]
     print("Total fuel needed {}".format(solve(data)))
 
 

@@ -1,11 +1,10 @@
 import os
+from aocd import get_data
 
 
 def get_input(day, token="\n"):
-    "Open input file of corresponding day."
-    with open('day{}.txt'.format(day), 'r') as myfile:
-        data = myfile.read()
-    return data.split(token)
+    "Open input file of corresponding day. Returns a list of strings"
+    return get_data(day=day).split(token)
 
 
 def distance(p1, p2):
