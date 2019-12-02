@@ -23,3 +23,13 @@ up early enough for a leaderboard *attempt*). The module is
 called [advent-of-code-data (aocd)](https://github.com/wimglenn/advent-of-code-data). 
 You can even make automatic submissions, but I'm not touching that yet.
 
+Today's puzzle was a bit harder to read, but the solution was
+straight forward. Bruteforce worked in Python to find the two
+paramters. It would be fun to fit the parameters smarter with
+some kind of binary search algorithm, but I didn't wrap my head
+around that and probably it wouldn't even work.
+
+Got some errors to start with, because I was manipulating the
+list and in the next iteration, starting with the manipulated array.
+To fix that, I had to initialize the list every iteration of course.
+Did that with a deepcopy of the initial list.
