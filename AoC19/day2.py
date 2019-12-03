@@ -35,7 +35,7 @@ def main():
             if result == expected:
                 print("Result part 2: {}".format(100 * i + j))
                 return
-            
+
 
 if __name__ == "__main__":
     main()
