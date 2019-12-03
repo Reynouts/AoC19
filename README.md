@@ -33,3 +33,38 @@ Got some errors to start with, because I was manipulating the
 list and in the next iteration, starting with the manipulated array.
 To fix that, I had to initialize the list every iteration of course.
 Did that with a deepcopy of the initial list.
+
+## Day 3
+This puzzle reminded me of the "Minecart Madness" puzzle of last year,
+running a cart through a grid and calculating where carts would crash
+with each other.
+
+This time it are no carts, but wires that could be intersected. Part 1
+was searching for the closest intersection with the manhattan distance.
+Second part you should account for the total number of steps covered by
+the wires. From part 1 to part 2, it was a change from a list to a dict.
+
+Still no fancy solutions, straight forward did the job just fine. Some
+smart trick that I saw from a fellow-AOCer was using a dictionary to
+change directions instead of a ugly `if/elif` construction.
+
+``` python
+if heading == "R":
+    dxy = (1,0)
+elif heading == "L":
+    dxy = (-1,0)
+=elif heading == "U":
+    dxy = (0,-1)
+elif heading == "D":
+    dxy = (0,1)
+```
+
+Could be:
+
+``` python
+deltas = {'R': (1, 0), 'L': (-1, 0), 'U': (0, 1), 'D': (0, -1)}
+# ...
+dxy = deltas[heading]
+```
+
+Which is a lot nicer and easier to expand.
