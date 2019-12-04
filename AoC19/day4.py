@@ -1,9 +1,7 @@
-def solve(number):
+def check(number):
     rep = str(number)
     last = "0"
-    match = False
-    twice = False
-    found = False
+    match, twice, found = False, False, False
     for i in rep:
         if int(i) < int(last):
             return False
@@ -11,15 +9,21 @@ def solve(number):
             if match:
                 twice = False
             else:
-                match = True
-                twice = True
+                match, twice = True, True
         else:
             if twice and match:
                 found = True
-            match = False
-            twice = False
+            match, twice = False, False
         last = i
     return found or (twice and match)
+
+
+def solve(data):
+    candidates = []
+    for number in range(data[0], data[1]):
+        if check(number):
+            candidates.append(number)
+    print ("Part 2: {}".format(len(candidates)))
 
 
 '''
@@ -39,6 +43,7 @@ def solve(data):
                     break
     print ("Part 2: {}".format(len(candidates)))
 '''
+
 
 def main():
     data = (235741, 706948)

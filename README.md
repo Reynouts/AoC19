@@ -93,7 +93,7 @@ def solve(data):
     print ("Part 2: {}".format(len(candidates)))
 ```
 
-The most funny thing of today was Roland's bad ass solution:
+The most funny thing today was Roland's bad ass solution:
 
 ``` python
 passwords = list()
