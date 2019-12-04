@@ -93,7 +93,20 @@ def solve(data):
     print ("Part 2: {}".format(len(candidates)))
 ```
 
-The most funny thing today was Roland's bad ass solution:
+Even a more pythonic solution from a fellow AoCer to check if a password is a candidate:
+
+``` python
+def is_password(num):
+    s = str(num)
+    adjacent = any(a == b for a, b in zip(s, s[1:]))
+    monotonic = all(a <= b for a, b in zip(s, s[1:]))
+    return adjacent and monotonic
+```
+
+I wouldn't come up with that solution, very nice and short.
+
+
+But the most funny thing today was Roland's bad ass solution:
 
 ``` python
 passwords = list()
