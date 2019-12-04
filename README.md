@@ -68,3 +68,45 @@ dxy = deltas[heading]
 ```
 
 Which is a lot nicer and easier to expand.
+
+## Day 4
+Not too hard day either, but needed some juggling with booleans and
+if/elis constructions after it worked. After my train ride to work
+I figured out the problem was more restricted than I tought and I
+came up with a easier solution:
+
+``` python
+# After understanding the requirements better, this does a nicer job solving it.
+# Sorting the array and checking if is equal, means it is increasing in number
+# After that it is possible to do counts for the number, because it is sorted it
+# is not possible to get something like 223324 in the input (which would work with
+# my original solution, but was not the question). That's why a simple count works.
+def solve(data):
+    candidates = []
+    for x in range(data[0], data[1]):
+        rep = str(x)
+        if "".join(sorted(rep)) == rep:
+            for i in set(rep):
+                if rep.count(i) == 2:
+                    candidates.append(x)
+                    break
+    print ("Part 2: {}".format(len(candidates)))
+```
+
+The most funny thing of today was Roland's bad ass solution:
+
+``` python
+passwords = list()
+for i in range(1, 7):
+    for j in range(i, 10):
+        for k in range(j, 10):
+            for l in range(k, 10):
+                for m in range(l, 10):
+                    for n in range(m, 10):
+                        number = int(''.join([str(i),str(j),str(k),str(l),str(m),str(n)]))
+                        if number >= 138241 and number <= 674034 and (i==j or j==k or k==l or l==m or m==n):
+                            passwords.append(number)
+print(len(passwords))
+```
+
+Pythonic, eh? :')
