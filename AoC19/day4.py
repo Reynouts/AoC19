@@ -36,7 +36,7 @@ def solve(data):
     candidates = []
     for x in range(data[0], data[1]):
         rep = str(x)
-        if "".join(sorted(rep)) == rep:
+        if rep == "".join(sorted(rep)):
             for i in set(rep):
                 if rep.count(i) == 2:
                     candidates.append(x)
