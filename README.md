@@ -152,6 +152,7 @@ algorithmic challenges involved, just "more of the same".
 One thing I learned today from was formatting a integer, so it got 
 leading zero's. This is easily done with f-strings:
 
+
 ``` python
 >>> f"{1:04}
 '0001'
