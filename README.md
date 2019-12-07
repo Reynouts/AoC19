@@ -1,6 +1,13 @@
 # Advent of Code 2019
-Solving puzzles of AoC19, probably all with Python.
-In this readme, just some notes. 
+Solving puzzles of AoC19, probably all with Python. 
+
+Third year I'm joining this cool challenge. Goal is just to solve 
+every puzzle within the day. Besides that I'm going to focus on
+the use of Python and writing Pythonic code (or finding out what
+it's about..).
+
+In this readme, just some notes about the puzzles, my code and other 
+solutions I have seen. All solution can be found in this repository.
 
 ## [--- Day 1: The Tyranny of the Rocket Equation ---](https://adventofcode.com/2019/day/1)
 
