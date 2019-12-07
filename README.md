@@ -242,14 +242,12 @@ for x in permutations(range(5, 10)):
             signal = g.send(signal)     # runs generator where it left of with signal variable as input
         try:
             for g in gs:
-                next(g)                 # runs to next yield which should wait for input. If it's not reaching this yield, generator throws         StopIteration
+                next(g)                 # runs to next yield which should wait for input. If it's not reaching this yield, generator throws StopIteration
         except StopIteration:
             break
     m = max(m, signal)
 print(m)
 ```
-
-In the Intcode computer, there is a yield statement, which 
 
 I had a hard time reading and understanding the story for part 2, I think more 
 examples would help to know what needed to be done. Fortunately I was not the only
