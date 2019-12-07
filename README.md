@@ -3,6 +3,7 @@ Solving puzzles of AoC19, probably all with Python.
 In this readme, just some notes. 
 
 ## [--- Day 1: The Tyranny of the Rocket Equation ---](https://adventofcode.com/2019/day/1)
+
 Easy puzzle today, took a couple of minutes to make it work
 with a generator in a list comprehension. More straight-forward
 solution would be a while loop and extra checks. Tried to make
@@ -40,6 +41,7 @@ To fix that, I had to initialize the list every iteration of course.
 Did that with a deepcopy of the initial list.
 
 ## [--- Day 3: Crossed Wires ---](https://adventofcode.com/2019/day/3)
+
 This puzzle reminded me of the "[Mine cart madness](https://adventofcode.com/2018/day/13)" puzzle of last year,
 running a cart through a grid and calculating where carts would crash
 with each other.
@@ -75,6 +77,7 @@ dxy = deltas[heading]
 Which is a lot nicer and easier to expand.
 
 ## [--- Day 4: Secure Container ---](https://adventofcode.com/2019/day/4)
+
 So today the puzzle was to generate 6-digit-numbers between two
 given input numbers and decide if this number was a valid password.
 Valid means:
@@ -164,3 +167,64 @@ leading zero's. This is easily done with f-strings:
 This way you convert it to a string with the "width" you need.
 
 Next!
+
+## [--- Day 6: Universal Orbit Map ---](https://adventofcode.com/2019/day/6)
+
+Some graph theory comes in handy today. There are objects orbitting around each
+other and in part 1 you need to figure out how many objects are orbiting directly
+and idirectly around all objects. Sounds like a recursive problem.
+
+I calculate the total objects orbiting recursively, but the objects are iterated
+over multiple times, so I store the solution in the object: `self.total`. 
+
+``` python    
+def get_orbits(self):
+    if self.total < 0:
+        total = len(self.orbits_around)
+        for n in self.orbits_around:
+            total += n.get_orbits()
+        self.total = total
+    return self.total
+```
+
+The second part was to find the shortest path from a startnode to an endnode. 
+In part one it was a directed graph (a simple tree), but in this case you could
+also travel in opposite direction, so I needed to make it bidirectional (simply
+added the parents to the neighbours) and used breadth first search to find the
+shortest path. Not very exciting, but I like these puzzles more that the Intcode
+computer.
+
+## [--- Day 7: Amplification Circuit ---](https://adventofcode.com/2019/day/7)
+
+Oh no, the Intcode computer again! This time there needed to be five instances of
+the Intcomputer running with their own data. With initial input values
+and tying the instances together with an input/output relation, you need to calculate 
+the output of the fifth instance. The initial input values are permutations of five
+different numbers and in part 1 the task is to calculate the maximum output with these
+input values. 
+
+Of course you can/have to reuse your Intcomputer from day 5 to do the calculations.
+
+The second part was hard to understand, but the fifth instance is tied back to the
+first instance. So the last output is feeded back. Eventually the program halts 
+somwhere and you need to keep track of the maximum output that you have seen.
+Another caveat is that every instance got it's own data and this stays in memory
+for the whole run.
+
+I keep track of the instructionpointer where the instance halted and when it needs
+to be ran again, I pass that instructionpointer so it can continue where it left of.
+But what really happens is just a new function call, with the mutated data and the
+new pointer.
+
+This was the first thing I thought of and worked out fine, but looking at other
+solutions, the nicest way of solving this in Python is using generators. This way the 
+instance can really "halt" at a point when it yields output, which the next instance 
+takes as input. When a halted instance receives input again, it can continue where 
+it left of. Very nice way of using generators.
+
+I had a hard time reading and understanding the story for part 2, I think more 
+examples would help to know what needed to be done. Fortunately I was not the only
+one [struggling](https://www.reddit.com/r/adventofcode/search/?q=flair_name%3A%22Help%22%20%22day%207%22&restrict_sr=1&t=day)
+ with understanding part 2.
+
+
