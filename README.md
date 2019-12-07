@@ -175,7 +175,8 @@ other and in part 1 you need to figure out how many objects are orbiting directl
 and idirectly around all objects. Sounds like a recursive problem.
 
 I calculate the total objects orbiting recursively, but the objects are iterated
-over multiple times, so I store the solution in the object: `self.total`. 
+over multiple times, so I store the solution in the object member variable: 
+`self.total`. 
 
 ``` python    
 def get_orbits(self):
@@ -221,6 +222,34 @@ solutions, the nicest way of solving this in Python is using generators. This wa
 instance can really "halt" at a point when it yields output, which the next instance 
 takes as input. When a halted instance receives input again, it can continue where 
 it left of. Very nice way of using generators.
+
+Solution by [andreyrmg](https://www.reddit.com/user/andreyrmg/) with some comments
+from me:
+
+``` python
+m = 0
+for x in permutations(range(5, 10)):
+    gs = []
+    for phase in x:
+        # first sweep for all instances, using the phase variables 
+        g = run(phase)  # initializes generator
+        next(g)         # runs to first yield and halts (waits for input to be send)
+        g.send(phase)   # sends phase variable to where the generator halted, runs until yield is called again and something is returned
+        gs.append(g)
+    signal = 0
+    while True:
+        for g in gs:
+            signal = g.send(signal)     # runs generator where it left of with signal variable as input
+        try:
+            for g in gs:
+                next(g)                 # runs to next yield which should wait for input. If it's not reaching this yield, generator throws         StopIteration
+        except StopIteration:
+            break
+    m = max(m, signal)
+print(m)
+```
+
+In the Intcode computer, there is a yield statement, which 
 
 I had a hard time reading and understanding the story for part 2, I think more 
 examples would help to know what needed to be done. Fortunately I was not the only
