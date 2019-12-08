@@ -1,10 +1,9 @@
-import aocutils as util
 import os
 from textwrap import wrap
 
 
 def matrixprinter(layer):
-    encoded = [" " if x == "0" else "#" for x in layer]
+    encoded = ['\033[40m \033[0m' if x == "0" else '\033[107m \033[0m' for x in layer]
     i = 0
     m = []
     result = ""
@@ -31,7 +30,6 @@ def solve(data):
 
 
 def main():
-    #data = util.get_input(8)[0]
     with open("day8.txt","r") as f: data = f.read()
     width, height = 25, 6
     data = wrap(data, width * height)
@@ -40,21 +38,11 @@ def main():
     encoded = []
     for i in range(150):
         for layer in data:
-            matrixprinter("".join(encoded[0:i])+ layer[i:])
+            #matrixprinter("".join(encoded[0:i])+ layer[i:])
             if not layer[i] == "2":
                 encoded.append(layer[i])
                 break
-
-
-    #print("Part 2:")
-    #encoded = [" " if x == "0" else "#" for x in encoded]
     matrixprinter(encoded)
-    #i = 0
-    #m = []
-    #while i < width * height:
-    #    print("".join(encoded[i:i + width]))
-    #    m.append(encoded[i:i + width])
-    #    i = i + width
 
 
 if __name__ == "__main__":
