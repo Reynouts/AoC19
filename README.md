@@ -278,6 +278,8 @@ The second part was figuring out which message was present in the matrix.
 In Python it is not very hard to do these kind of matrix operations, print it
 and interpret the letters.
 
+![giffie](day8.gif)
+
 The fun part is of course automating the last part and make a letter classifier.
 I was thinking about making this, maybe using openCV, but with the challenge of
 not knowing the representation and width of the character. That would be the most
