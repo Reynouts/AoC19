@@ -276,7 +276,9 @@ has most zeros and do a multiplication of the amount of ones and twos.
 
 The second part was figuring out which message was present in the matrix.
 In Python it is not very hard to do these kind of matrix operations, print it
-and interpret the letters.
+and interpret the letters by yourself. Probably there are far more efficient
+ways to do the matrix operations, but it was again not necessary for this puzzle
+to optimize any of the algorithms.
 
 ![giffie](day8.gif)
 
