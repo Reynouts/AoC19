@@ -261,4 +261,24 @@ examples would help to know what needed to be done. Fortunately I was not the on
 one [struggling](https://www.reddit.com/r/adventofcode/search/?q=flair_name%3A%22Help%22%20%22day%207%22&restrict_sr=1&t=day)
  with understanding part 2.
 
+## [--- Day 8: Space Image Format ---](https://adventofcode.com/2019/day/8)
 
+Easy sunday morning! In summary you get a 3D-matrix where every cell can be
+a transparant, black or white cell. When looking from the front "through" the
+matrix, which letters appear?
+
+Check [this visualization](https://www.reddit.com/r/adventofcode/comments/e7qpeo/2019_day_8_part_2_openscad_visualization/)
+to see what the data could look like after creating a matrix of it and what 
+the result shoud be.
+
+For the first part you needed to do a simple check of the input: which layer
+has most zeros and do a multiplication of the amount of ones and twos.
+
+The second part was figuring out which message was present in the matrix.
+In Python it is not very hard to do these kind of matrix operations, print it
+and interpret the letters.
+
+The fun part is of course automating the last part and make a letter classifier.
+I was thinking about making this, maybe using openCV, but with the challenge of
+not knowing the representation and width of the character. That would be the most
+interesting part of this puzzle!
