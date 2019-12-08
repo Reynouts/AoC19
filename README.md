@@ -281,4 +281,6 @@ and interpret the letters.
 The fun part is of course automating the last part and make a letter classifier.
 I was thinking about making this, maybe using openCV, but with the challenge of
 not knowing the representation and width of the character. That would be the most
-interesting part of the day!
+interesting part of the day, besides my hoodie!
+
+![Hoodie](hoodie.jpg)
