@@ -29,7 +29,7 @@ while len(data) > 0:
 Started with using a module to get my puzzle input automatically
 without copy and pasting (just for fun, because I'm not waking 
 up early enough for a leaderboard *attempt*). The module is 
-called [advent-of-code-data (aocd)](https://github.com/wimglenn/advent-of-code-data){:target="_blank"}. 
+called [advent-of-code-data (aocd)](https://github.com/wimglenn/advent-of-code-data). 
 You can even make automatic submissions, but I'm not touching that yet.
 
 This puzzle was insipred by the Apollo Guidance Computer, which
@@ -49,7 +49,7 @@ Did that with a deepcopy of the initial list.
 
 ## [--- Day 3: Crossed Wires ---](https://adventofcode.com/2019/day/3)
 
-This puzzle reminded me of the "[Mine cart madness](https://adventofcode.com/2018/day/13)"{:target="_blank"} puzzle of last year,
+This puzzle reminded me of the "[Mine cart madness](https://adventofcode.com/2018/day/13)" puzzle of last year,
 running a cart through a grid and calculating where carts would crash
 with each other.
 
@@ -230,7 +230,7 @@ instance can really "halt" at a point when it yields output, which the next inst
 takes as input. When a halted instance receives input again, it can continue where 
 it left of. Very nice way of using generators.
 
-Solution by [andreyrmg](https://www.reddit.com/user/andreyrmg/){:target="_blank"} with some comments
+Solution by [andreyrmg](https://www.reddit.com/user/andreyrmg/) with some comments
 from me:
 
 ``` python
@@ -258,7 +258,7 @@ print(m)
 
 I had a hard time reading and understanding the story for part 2, I think more 
 examples would help to know what needed to be done. Fortunately I was not the only
-one [struggling](https://www.reddit.com/r/adventofcode/search/?q=flair_name%3A%22Help%22%20%22day%207%22&restrict_sr=1&t=day){:target="_blank"}
+one [struggling](https://www.reddit.com/r/adventofcode/search/?q=flair_name%3A%22Help%22%20%22day%207%22&restrict_sr=1&t=day)
  with understanding part 2.
 
 ## [--- Day 8: Space Image Format ---](https://adventofcode.com/2019/day/8)
@@ -267,7 +267,7 @@ Easy sunday morning! In summary you get a 3D-matrix where every cell can be
 a transparant, black or white cell. When looking from the front "through" the
 matrix, which letters appear?
 
-Check [this visualization](https://www.reddit.com/r/adventofcode/comments/e7qpeo/2019_day_8_part_2_openscad_visualization/){:target="_blank"}
+Check [this visualization](https://www.reddit.com/r/adventofcode/comments/e7qpeo/2019_day_8_part_2_openscad_visualization/)
 to see what the data could look like after creating a matrix of it and what 
 the result shoud be.
 
@@ -281,4 +281,4 @@ and interpret the letters.
 The fun part is of course automating the last part and make a letter classifier.
 I was thinking about making this, maybe using openCV, but with the challenge of
 not knowing the representation and width of the character. That would be the most
-interesting part of this puzzle!
+interesting part of the day!
