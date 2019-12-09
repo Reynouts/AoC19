@@ -288,3 +288,21 @@ not knowing the representation and width of the character. That would be the mos
 interesting part of the day, besides my hoodie!
 
 ![Hoodie](hoodie.jpg)
+
+## [--- Day 9: Sensor Boost ---](https://adventofcode.com/2019/day/9)
+
+Today we are finishing the Intcode computer (yay!). There is a mode added, which
+takes a offset for the index, and an opcode to change this offset.
+
+Moreover, the memory needed for the computer needs to be biiiiiig (no idea how
+big), so I just appended a lot zeros to the input list to increase the available
+slots.
+
+Sounded simple, but I managed to have some dumb problems, which I couldn't find
+quickly. So, I needed more coffee input to debug the beast and fix it.
+
+First and second part where almost the same, only the input variable changed.
+
+Based on the puzzle description, I guess the Intcode computer is now finished,
+but probably we need to reuse it later on.
+
