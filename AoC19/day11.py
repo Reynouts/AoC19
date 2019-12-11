@@ -2,13 +2,10 @@ import aocutils as util
 import copy
 
 
-@util.timeit
-def solve(data, input, counter=0):
-    data = data + [0] * 10000
+def solve(data, inp, counter=0, rbase=0):
     current = 0
-    counter = 0
     diag = []
-    rbase = 0
+
     while counter < len(data):
         current = data[counter]
         opcode = current % 100
@@ -16,7 +13,7 @@ def solve(data, input, counter=0):
 
         # Stop the loop when 99 found
         if opcode == 99:
-            break
+            return [99], counter, rbase
 
         # set index of arg1 corresponding to it's mode
         if modes[0] == 0:
@@ -24,16 +21,18 @@ def solve(data, input, counter=0):
         elif modes[0] == 1:
             arg1 = counter + 1
         else:
-            arg1 = data[counter + 1]+rbase
+            arg1 = data[counter + 1] + rbase
 
         # opcodes with only first argument
         if opcode == 3:
-            data[arg1] = input
+            data[arg1] = inp
             counter += 2
             continue
         elif opcode == 4:
             diag.append(data[arg1])
             counter += 2
+            if len(diag) == 2:
+                return diag, counter, rbase
             continue
         elif opcode == 9:
             rbase += data[arg1]
@@ -75,14 +74,64 @@ def solve(data, input, counter=0):
             counter += 4
 
     # return last diagnostic code array as output
-    return (diag or [None])
+    return (diag or [None]), counter, rbase
+
+
+def paint(data, parttwo=False):
+    iterations = 0
+    black = set()
+    white = set()
+    current = (0, 0)
+    if parttwo:
+        white.add(current)
+    heading = 0
+    directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+    pointer = 0
+    rbase = 0
+    while True:
+        inp = 1 if current in white else 0
+        output, pointer, rbase = solve(data, inp, pointer, rbase)
+        if output[0] == 99:
+            break
+        else:
+            if output[0] == 1:
+                white.add(current)
+                black.discard(current)
+            else:
+                black.add(current)
+                white.discard(current)
+            if output[1] == 0:
+                # left -1,0 -> 0,-1 -> 1,0 -> 0,1
+                heading = (heading + 1) % len(directions)
+            elif output[1] == 1:
+                heading = heading - 1
+                if heading < 0:
+                    heading = len(directions)-1
+            current = tuple(map(sum, zip(current, directions[heading])))
+        iterations += 1
+    if not parttwo:
+        return len(white) + len(black)
+    return white
 
 
 def main():
-    data = util.get_input(9, ",")
+    data = util.get_input(11, ",")
     data = [int(x) for x in data]
-    print ("Part 1: {}".format(solve(copy.deepcopy(data), 1)))
-    print ("Part 2: {}".format(solve(copy.deepcopy(data), 2)))
+    data = data + [0] * 10000
+
+    print("Part 1: {}".format(paint(copy.deepcopy(data))))
+
+    on = paint(copy.deepcopy(data), True)
+    result = ""
+    for i in range(min(on)[0], max(on)[0]+1):
+        for j in range (min(on)[1],max(on)[1]+1):
+            if (i,j) in on:
+                result += "\033[40m  \033[0m"
+            else:
+                result += "\033[107m  \033[0m"
+        result += "\n"
+    print ("Part 2:\n{}".format(result))
+
 
 
 if __name__ == "__main__":

@@ -306,3 +306,48 @@ First and second part where almost the same, only the input variable changed.
 Based on the puzzle description, I guess the Intcode computer is now finished,
 but probably we need to reuse it later on.
 
+## [--- Day 10: Monitoring Station ---](https://adventofcode.com/2019/day/10)
+
+Coolest problem uptil now. Unfortunately I got less time on my hands, so 
+solutions are sometimes a bit hacky and the write-ups are not very long.
+
+The first task was to find the astroid that has direct sight of the most
+other astroids, to use as a monitor station place. I sketch something on
+paper and made an "algorithm" to find if there is another astroid blocking
+its view or not. Not very hard and testing it was nice with the examples.
+
+Next part was to destroy the astroid with a clockwise moving laser and
+tell which astroid was the one that got removed as number 200 in the line.
+For this I needed a small hint, the hint was: "angle". So I computed the
+angle of the astroids of part 1 which are in sight and sorted them in 
+clockwise order. Tadaa, worked like a charm. There are [cool visuals](https://v.redd.it/inuyojales341/DASH_1080) out
+there from the radar, I would like to create some too.. but time..
+Maybe later.
+
+## [--- Day 11: Space Police ---](https://adventofcode.com/2019/day/11)
+
+Nooooo the Intcomputer monster needs to be used (or in my case: revisited
+and refactored..). This day the context is using the Intcomputer with a 
+new Intcode program to get parameters for a kind of robot car painter.
+
+This painter moves around the grid using only black and white paint and
+needs to turn left or right every step. Following the instructions from
+the Intcomputer it will paint as long as there is no halt message 99. 
+
+In part 1 the robot painter makes a great pattern, which I will visualize
+later. In part 2 the program starts with white instead of black and paints
+some characters.
+
+So... today my bug: passing a instruction pointer as argument but setting
+it to zero in the beginning of my method. Couldn't find it, stared very long
+at my code. Got some tips from fellow AoCers, knew it had to do something 
+with my Intcomputer, and finally I found the dumb mistake.
+
+Because I wanted to mix my Day 7 computer with my Day 9 computer, I refactored
+some parts of the computer, but forgot this initialization line in the 
+beginning of my method, which now should be set by the parameter of the method.
+
+Well: lesson learned (quit building Intcomputers?). Day finished, but not
+so happy. This shouldn't taken longer than a couple of minutes.
+
+
