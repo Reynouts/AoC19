@@ -350,4 +350,57 @@ beginning of my method, which now should be set by the parameter of the method.
 Well: lesson learned (quit building Intcomputers?). Day finished, but not
 so happy. This shouldn't taken longer than a couple of minutes.
 
+## [--- Day 12: The N-Body Problem ---](https://adventofcode.com/2019/day/12)
+
+This was a fun day, needed some good thinkin', because brute-force wasn't going
+to cut it this time. But I didn't realise that yet in part 1.
+
+In this puzzle there are four moons moving along in space, guided by gravity
+between the moons. For the first part you needed to implement the "physics"
+of this world and calculate the positions and  velocities after 1000 iterations.
+With good and clean examples, it was not very hard. I decided to go the OO-route
+and made a Moon class with nice selfresponsible behavior.
+
+In part 2 the task was to find the amount of iterations it takes before all the
+moons are back in a previously seen state (position *and* velocity). If the puzzle
+is designed right, this means it must be cyclic, so the start-state would come
+around sometime. Dreams crushed very fast, realising this would take a billion
+years to computer without quantumcomputer. So I had to decide: look for a better
+solution for this puzzle or build a quantumcomputer.
+
+We can't simulate all cycles, but we can compute how many cycles it takes per axes
+to come back to the initial state. If we know this from all three axes, we can 
+compute the [least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple)
+between these numbers and finished, presto.
+
+Eventually it worked out, running in about half a minute, still the OO-based solution.
+Probably should be a lot faster if I also compute the lcm of the axes, instead of
+waiting for that cycle..
+
+Happy to finish it! Back to quantumcomputing.
+
+## [--- Day 13: Care Package ---](https://adventofcode.com/2019/day/13)
+
+OK, I'm getting really tired of the reuse and refactoring of my Intcode computer, 
+this time it should kinda work on-the-fly, but of course it didn't.
+
+The intcode computer with the new intcode program will run the oldschool game
+breakout. You have to figure out how to move the paddle and automate it (or
+maybe play it, or change the intcode program input..) to reach the final score
+when all blocks are broken. The question is: what is the final score?
+
+There are a lot of cool visualisations out there, but you don't need it.
+The game is restricted in a sense that the ball can only move diagonally,
+every step you have to check how the *x*-coordinate changes of the ball and
+move the paddle accordingly (+1, -1 or 0). Very simple "AI", but good enough 
+to get this finished!
+
+Windows console visualisations are always hard to make without flickering,
+this is the best I could do:
+
+![Breakout!](day13.gif)
+
+## [--- Day 14: Space Stoichiometry ---](https://adventofcode.com/2019/day/13)
+
+No time for interesting write-ups anymore :(
 
