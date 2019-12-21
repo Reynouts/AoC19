@@ -474,3 +474,18 @@ There are several options, but I used the `msvcrt`-module and it
 worked nicely with `msvcrt.getch()`.
 
 
+## [--- Day 16: Flawed Frequency Transmission ---](https://adventofcode.com/2019/day/15)
+
+Part 1 of today where simply implementing the stated instructions. 
+This time I enjoyed it to "just" implement something like the first
+days.
+
+Next part was to optimize it, because for a big input, it would take
+years to execute. With some thorough inspection of the input I could
+ditch 90% of the input and make it manageable with a simple loop.
+Resulting in an execution time of around 20 seconds.
+
+Probably there is a formula for this problem, I tried to come up with
+this, but I couldn't figure it out. Think I was close, but it's quite
+complicated. That should reduce runtime to one second or something.
+
