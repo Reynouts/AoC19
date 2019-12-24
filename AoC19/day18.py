@@ -69,13 +69,14 @@ def recur(sleutelhanger, keys_to_key, total_cost, cost, key):
     sleutelhanger.add(key)
     current = key
     print(current, sleutelhanger, total_cost, solutions)
-    if len(sleutelhanger) == 52:
+    if len(sleutelhanger) == 44:
         solutions.append(total_cost)
         print("solution found with cost: {}".format(total_cost))
         return total_cost
 
     for s in solutions:
         if s <= total_cost:
+            print ("Returing {}".format(s))
             return
 
     key_to_key = []
@@ -83,18 +84,17 @@ def recur(sleutelhanger, keys_to_key, total_cost, cost, key):
     for i, x in enumerate(keys_to_key):
         if x[0] == current:
             key_to_key = keys_to_key[i]
-            break
-    for path in key_to_key[1]:
-        if path[1] not in sleutelhanger:
-            if all(key in sleutelhanger for key in path[2]):
-                print("from {}, can reach: {}".format(current, path[1]))
-
-                cost, key, _ = path
-                total_cost += cost
-                sleutelhanger.add(key)
-                sleutelhanger.add(key.upper())
-                current = key
-                recur(sleutelhanger, keys_to_key, total_cost, cost, key)
+            for path in key_to_key[1]:
+                if path[1] not in sleutelhanger:
+                    if all(key in sleutelhanger for key in path[2]):
+                        print("from {}, can reach: {}".format(current, path[1]))
+                        sh = copy.deepcopy(sleutelhanger)
+                        cost, key, _ = path
+                        total_cost += cost
+                        sh.add(key)
+                        sh.add(key.upper())
+                        #current = key
+                        recur(sh, keys_to_key, total_cost, cost, key)
 
 
 def pathfind(grid, start, end, visited, doors, depth=0):
@@ -218,9 +218,6 @@ def main():
     #
     # print(total_cost)
 
-
-# Part 1: 4620
-# Part 2: 1564
 
 if __name__ == "__main__":
     main()

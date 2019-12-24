@@ -187,7 +187,7 @@ def main():
     answer = [ord(char) for char in "N\n"]
     instructions = [main, A, B, C, answer]
     print("Part 2: {}".format(run(instructions, data)))
-    
+
 
 if __name__ == "__main__":
     main()

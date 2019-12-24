@@ -402,7 +402,8 @@ this is the best I could do:
 
 ## [--- Day 14: Space Stoichiometry ---](https://adventofcode.com/2019/day/14)
 
-Time is short.
+Time is short. Will be shorter in the rest of the days. Hopefully I can finish
+the challenge.
 
 ## [--- Day 15: Oxygen System ---](https://adventofcode.com/2019/day/15)
 
@@ -474,7 +475,7 @@ There are several options, but I used the `msvcrt`-module and it
 worked nicely with `msvcrt.getch()`.
 
 
-## [--- Day 16: Flawed Frequency Transmission ---](https://adventofcode.com/2019/day/15)
+## [--- Day 16: Flawed Frequency Transmission ---](https://adventofcode.com/2019/day/16)
 
 Part 1 of today where simply implementing the stated instructions. 
 This time I enjoyed it to "just" implement something like the first
@@ -489,3 +490,88 @@ Probably there is a formula for this problem, I tried to come up with
 this, but I couldn't figure it out. Think I was close, but it's quite
 complicated. That should reduce runtime to one second or something.
 
+## [--- Day 17: Set and Forget ---](https://adventofcode.com/2019/day/17)
+
+Today the Intcomputer is used to get a map. For part 1: calculate the
+intersections of a path in the map multiply the x and y coordinate of
+the intersection closest to the origin.
+
+For part two instructions needed to be given to the intcomputer, how
+a robot needs to move along the path. The tricky part was to construct
+a movement instruction which consisted out of three subpaths and 
+eventually knowing how to feed that into the intcomputer.
+
+## [--- Day 18: Many-Worlds Interpretation ---](https://adventofcode.com/2019/day/18)
+
+Again a pathfinding problem. In the maze there are keys and doors that can be
+unlocked with the corresponding keys. What is the shortest path to collect all
+keys?
+
+I simplified the input maze by cutting out all dead ends and doors leading to
+nowhere. This made the maze really simple: no cycles and only one route to get 
+a key. Simple BFS did the trick again.
+
+## [--- Day 19: Tractor Beam ---](https://adventofcode.com/2019/day/19)
+
+With the intcode computer program of today, we can check if a coordinate is
+part of a large tractor beam. The goal is to find the first point in the beam
+in which a 100x100 square could be positioned.
+
+This could be done in several ways, but most easy way was to go through the
+rows and check if horizontally 100 pixels fit and vertically 100 pixels fit.
+
+Something like that was fast enough to get the answer.
+
+## [--- Day 20: Donut Maze ---](https://adventofcode.com/2019/day/20)
+
+In the donut maze there are portals that teleport you to another portal with
+the same name (bidirectional). What is the shortest path from start to finish?
+Using portals are just extra edges in the graph and the graph is not very large.
+Again reusing BFS, easy.
+
+The donut maze turned out to be a "recursive" maze with portals to "levels"
+up and down (with the same layout). Only on the groundfloor there is a
+start and an exit. Meaning there is a third coordinate involved (z).
+With some small adjustments I could run my BFS algorithm again and find an
+answer. Downside is it took 8 minutes! But coming up with another solution
+would probably take more time ;-)
+
+## [--- Day 21: Springdroid Adventure ---](https://adventofcode.com/2019/day/21)
+
+Some Intcomputer puzzle again, making a robot jump over gaps in the floor. 
+Checking the output and making a boolean expression as input instruction for
+the robot.
+
+## [--- Day 22: Slam Shuffle ---](https://adventofcode.com/2019/day/22)
+
+First part was an easy implementation of some "shuffle" algorithms (which are kind
+of build-in in a `deque` in Python). Second part couldn't be done with a simulation.
+So I looked for a faster solution without simulating, which worked OK for part 1,
+but the won't work yet for part 2. I wanted to reverse the shuffle, but there it got
+messy. The math behind it to solve it quickly, is way beyond my reach. I could figure
+out I needed to invert the modulo multiplication, but that is as far as I could
+solve it myself. With that part, there are still efficiency steps to make to make
+it computable. Probably representing the shuffle in *one* lineair transformation.
+
+Advent of Math!
+
+## [--- Day 23: Category Six ---](https://adventofcode.com/2019/day/23)
+
+Interconnected Intcode computers! Sending packets, receiving packets. Tying them
+together and hoping for the right answers, without testcases.
+
+## [--- Day 24: Planet of Discord ---](https://adventofcode.com/2019/day/24)
+
+A nice puzzle today, which was relatively easy comparing last week. It's a
+variant on [Conway's game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
+Tried to keep my code small and a bit efficient, but probably are better ways.
+I represented the grid as a dictionary, wanted to only save the cells with a
+bug in it, not the empty cells, but it was easier to keep the empty cells in
+memory for part 2 and expanding the surrounding grids on the go.
+
+Should have saved some time to make some cool visuals for this day, but
+unfortunately all my time went down the drain caused by the Math-terror-day-22 :-D
+
+## [--- Day 25: ](https://adventofcode.com/2019/day/25)
+
+Thanks for the intcode and see you next year!
