@@ -1,42 +1,5 @@
-import copy
 import itertools
-
-
-def checkpoint(dict, position):
-    x, y = position
-    directions = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
-    for d in directions:
-        if d not in dict.keys():
-            return False
-    return True
-
-
-def draw_grid(grid):
-    result = ""
-    for j in grid:
-        for i in j:
-            result += i
-        result += "\n"
-    print(result)
-
-
-def stringtogrid(s):
-    grid = [[]]
-    for i in s:
-        if chr(i) == "\n":
-            grid.append([])
-        else:
-            grid[-1].append(i)
-    return grid
-
-
-def gridtodict(grid):
-    d = {}
-    for y, row in enumerate(grid):
-        for x, item in enumerate(row):
-            if chr(item) in "#^<>v":
-                d[(x, y)] = item
-    return d
+import random
 
 
 def solve(data, inp, counter=0, rbase=0, provided=False):
@@ -122,50 +85,100 @@ def solve(data, inp, counter=0, rbase=0, provided=False):
     return (diag or [None]), counter, rbase, False
 
 
-def run(instructions, data):
-    written = ["south", "take food ration", "west", "take sand", "north", "north", "east", "take astrolabe", "west",
-               "south", "south", "east", "north", "north", "east", "take coin", "west", "south", "east", "take cake",
-               "south", "take weather machine", "west", "take ornament", "west", "take jam", "east", "east", "north",
-               "east", "east", "east", "south"]
-    items = ["food ration", "sand", "astrolabe", "cake", "weather machine", "ornament", "jam", "coin"]
-    written.extend(["drop " + x for x in items])
-    for i in range(1, len(items) + 1):
-        for i in list(itertools.combinations(items, i)):
-            for j in i:
-                written.append("take "+j)
-            written.append("south")
-            for j in i:
-                written.append("drop "+j)
-    inp = []
-    gimme = False
-    counter, rbase = 0, 0
-    instructions = []
-    last_char = ""
-    sec_last = ""
+def parse(story):
+    # got this blacklist by looking at the output, but could have been automated
+    blacklist = ["infinite loop", "photons", "molten lava", "giant electromagnet", "escape pod"]
+    actions = []
+    movement = []
+    if "here lead:" in story:
+        d = story.split("here lead:")[-1]
+        directions = ("north", "south", "east", "west")
+        for direction in directions:
+            if direction in d:
+                movement.append(direction)
+    if "Items" in story:
+        items = story.split("Items here:")[1]
+        items = items.split("\nCommand?\n")
+        items = items[0].split("- ")[1::]
+        for x in items:
+            item = x[:-1]
+            if item not in blacklist:
+                actions.append("take " + x[:-1])
+    return actions, movement
+
+
+def get_items(story):
+    inventory = []
+    if "Items" in story:
+        items = story.split("Items in your inventory:")[1]
+        items = items.split("\nCommand?\n")
+        items = items[0].split("- ")[1::]
+        for x in items:
+            inventory.append(x[:-1])
+    return inventory
+
+
+def run(instructions, data, console=True, manual=False, max_steps=250):
+    gimme, endgame, inv = False, False, False
+    counter, rbase, steps = 0, 0, 0
+    instructions, buffer, actions, movement, written, inp = [], [], [], [], [], []
+    last_char, sec_last = "", ""
     while True:
         output, counter, rbase, gimme = solve(data, inp, counter, rbase, gimme)
         if not output:
             gimme = True
+            story = ''.join(buffer)
+            if steps > max_steps and "Security" in story:
+                endgame = True
+            elif "==" in story:
+                actions, movement = parse(story)
             if not instructions:
-                if written:
-                    instructions = written.pop(0)
+                if endgame and not manual:
+                    if written:
+                        instructions = written.pop(0)
+                    elif inv:
+                        items = get_items(story)
+                        written.extend(["drop " + x for x in items])
+                        for i in range(1, len(items) + 1):
+                            for i in list(itertools.combinations(items, i)):
+                                for j in i:
+                                    written.append("take " + j)
+                                written.append("south")
+                                for j in i:
+                                    written.append("drop " + j)
+                        instructions = written.pop(0)
+                    else:
+                        instructions = "inv"
+                        inv = True
                 else:
-                    instructions = input()
+                    if manual:
+                        instructions = input()
+                    elif actions:
+                        # favor actions/taking items over moving
+                        instructions = random.choice(actions)
+                        actions.remove(instructions)
+                    else:
+                        instructions = random.choice(movement)
+                        actions = []
+                        movement = []
+                        steps += 1
+                if console and not manual:
+                    print(instructions)
                 instructions = [ord(char) for char in instructions]
                 instructions.append(10)
                 inp = instructions
                 instructions = []
+                buffer = []
         else:
-            try:
-                output = chr(output[0])
-                if sec_last == "c" and last_char == "c" and output == "c":
-                    break
+            output = chr(output[0])
+            if sec_last == "c" and last_char == "c" and output == "c":
+                story = ''.join(buffer)
+                return [int(s) for s in story.split() if s.isdigit()][-1]
+            sec_last = last_char
+            last_char = output
+            buffer.append(output)
+            if console or manual:
                 print(output, end="")
-                sec_last = last_char
-                last_char = output
-
-            except:
-                return (output[0])
 
 
 def main():
@@ -173,7 +186,7 @@ def main():
         data = f.read().split(",")
     data = [int(x) for x in data]
     data = data + [0] * 10000
-    run([], data)
+    print("\nPart 1: {}".format(run([], data)))
 
 
 if __name__ == "__main__":
