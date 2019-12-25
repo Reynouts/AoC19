@@ -572,7 +572,7 @@ memory for part 2 and expanding the surrounding grids on the go.
 Should have saved some time to make some cool visuals for this day, but
 unfortunately all my time went down the drain caused by the Math-terror-day-22 :-D
 
-## [--- Day 25: ](https://adventofcode.com/2019/day/25)
+## [--- Day 25: Cryostasis ---](https://adventofcode.com/2019/day/25)
 
 Great last puzzle, which you could solve manually: a text-based adventure game.
 Walking along the rooms of the spaceship, picking up items and getting the right
