@@ -574,4 +574,17 @@ unfortunately all my time went down the drain caused by the Math-terror-day-22 :
 
 ## [--- Day 25: ](https://adventofcode.com/2019/day/25)
 
-Thanks for the intcode and see you next year!
+Great last puzzle, which you could solve manually: a text-based adventure game.
+Walking along the rooms of the spaceship, picking up items and getting the right
+combination of items on the pressure-sensitve floor to have exactly the weight of
+a droid. 
+I walked around manually to see how big the spaceship was, but it was relatively
+small. On my way I noted the directions and items.
+I scripted to get all the items in the spaceship and try out all the combinations
+on the pressure-sensitive floor. Worked out fine, but could've been a lot smarter
+and generic: just walk around with BFS (hey, again!) to explore the spaceship, 
+note all the items (and items you should *not* pickup!). After that try out items
+and see if they are too heavy (discard) and after that make combinations instead
+of brute-force. But today I am happy with this manual and brute-force solution.
+
+Thanks for the intcode, happy christmas and see you next year!
